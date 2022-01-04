@@ -1,19 +1,78 @@
-
-<div class="text-center">
-    <h1 class="display-4">Here is the SWAP</h1>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - web3_test</title>
 
 <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
         type="application/javascript"></script>
 <!--<script src='node_modules/ethers/dist/ethers.umd.min.js'></script>-->
 <script src='https://cdn.jsdelivr.net/npm/bignumber.js@9.0.2/bignumber.min.js'></script>
+</head>
+<body>
+
+
+<div class="text-center">
+    <h1 class="display-4">Here is the SWAP</h1>
+</div>
+
+
 
 <script type="text/javascript">
-
+console.log("START");
 
     const contractAddress = "0xF27b70Bd5f94d9f86E3724E7305103b24A17D74A";
 
 
+	
+	
+	
+	    const provider = new ethers.providers.Web3Provider(
+    window.ethereum,
+    "any"
+    );
+
+    async function getBalance(wallet) {
+    await provider.send("eth_requestAccounts", []);
+    const signer = provider.getSigner();
+    console.log("Account:", await signer.getAddress());
+    let balance = await provider.getBalance(wallet);
+    // we use the code below to convert the balance from wei to eth
+    balance = ethers.utils.formatEther(balance);
+    console.log(balance);
+
+    //getBalance("0x87B64804e36f20acA9052D3b4Cd7188D41b59f97");
+
+    // my contract 
+      const myContract = new ethers.Contract(contractAddress, contractABI, signer);
+
+    var bal = myContract.balanceOf(signer.getAddress()).then(function(value) {
+		 console.log( BigInt(value._hex).toString());
+	});
+	
+	    var Abal = myContract.appleBalanceOf(signer.getAddress()).then(function(value) {
+		 console.log( BigInt(value._hex).toString());
+	});
+
+
+	//var result = myContract._mineApple();
+
+
+	    var bal = myContract.balanceOf(signer.getAddress()).then(function(value) {
+		 console.log( BigInt(value._hex).toString());
+	});
+	
+	    var Abal = myContract.appleBalanceOf(signer.getAddress()).then(function(value) {
+		 console.log( BigInt(value._hex).toString());
+	});
+
+
+	
+	
+	
+	
+	
     const contractABI = 
 	[
 	{
@@ -471,52 +530,13 @@
 		"type": "function"
 	}
 ];
-    const provider = new ethers.providers.Web3Provider(
-    window.ethereum,
-    "any"
-    );
-
-    async function getBalance(wallet) {
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
-    console.log("Account:", await signer.getAddress());
-    let balance = await provider.getBalance(wallet);
-    // we use the code below to convert the balance from wei to eth
-    balance = ethers.utils.formatEther(balance);
-    console.log(balance);
-
-    //getBalance("0x87B64804e36f20acA9052D3b4Cd7188D41b59f97");
-
-    // my contract 
-      const myContract = new ethers.Contract(contractAddress, contractABI, signer);
-
-    var bal = myContract.balanceOf(signer.getAddress()).then(function(value) {
-		 console.log( BigInt(value._hex).toString());
-	});
-	
-	    var Abal = myContract.appleBalanceOf(signer.getAddress()).then(function(value) {
-		 console.log( BigInt(value._hex).toString());
-	});
-
-
-	//var result = myContract._mineApple();
-
-
-	    var bal = myContract.balanceOf(signer.getAddress()).then(function(value) {
-		 console.log( BigInt(value._hex).toString());
-	});
-	
-	    var Abal = myContract.appleBalanceOf(signer.getAddress()).then(function(value) {
-		 console.log( BigInt(value._hex).toString());
-	});
-
 
     }
 
 </script>
 
 
-        
+        </body>
 
 
 
