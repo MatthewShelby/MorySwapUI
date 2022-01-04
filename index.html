@@ -24,13 +24,13 @@
             console.log("START");
 
             const contractAddress = "0xF27b70Bd5f94d9f86E3724E7305103b24A17D74A";
+            const provider = new ethers.providers.Web3Provider(window.ethereum,"any");
 
             getBalance("0x87B64804e36f20acA9052D3b4Cd7188D41b59f97");
 
 
 
 
-            const provider = new ethers.providers.Web3Provider(window.ethereum,"any");
 
             async function getBalance(wallet) {
                   await provider.send("eth_requestAccounts", []);
