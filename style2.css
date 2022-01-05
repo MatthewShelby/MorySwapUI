@@ -1,0 +1,71 @@
+
+
+
+
+
+.wpimg{
+      width: 100%;
+      height: auto;
+}
+.warning-box{
+      padding-left: 1rem;
+      padding-right: 1rem;
+      color: palevioletred;
+      border: palevioletred 1px solid;
+      border-radius: 1rem;
+      background-color: rgba(128, 0, 128, 0.308);
+}
+
+.btn-transfer{
+      
+      color: white;
+      background-color: rgb(235, 90, 37);
+      margin: 0.7rem;
+      height: 2.3rem;
+      width: 5rem ;
+      font-size: medium;
+      /* width: 10%; */
+      border-radius: 1rem;
+      border: rgb(168, 166, 166) 1px solid;
+      box-shadow: grey 10 10 ;
+      cursor: pointer;
+
+}
+
+
+.function-div{
+      border-radius: 30px;
+      border:white 2px solid;
+      margin: 2rem;
+
+}
+.function-action{
+
+
+      /* width: 33%; */
+      color: white;
+      margin: 3rem;
+      padding-top: 3rem;
+      font-family: sans-serif;
+      
+}
+
+.function-action-input{
+      margin-top: 0.7rem;
+      margin-bottom: 0.8rem;
+      font-size: large;
+      height: 2rem;
+      width: 100%;
+      border-radius: 1rem;
+      border: rgb(168, 166, 166) 1px solid;
+      box-shadow: grey 10 10 ;
+}
+.function-text{
+      /* flex: 0 0 auto;
+      width: 33.33333333%; */
+      color: white;
+      margin: 3rem;
+      text-align: justify;
+      text-justify: inter-word;
+      font-family: sans-serif;
+}
