@@ -1,0 +1,5 @@
+{
+  "name": "Mory",
+  "description": "Any decription about your NFT",
+  "image": "https://gateway.pinata.cloud/ipfs/QmcHy2JnPcU7vSYwAhjatDY9W7hkxkeMrqz8N4fapMsB34"
+}

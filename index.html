@@ -16,242 +16,308 @@
 </head>
 
 <body>
-<div class="main">
-	<div class="con">
-		<div class="col-12 row justify-content-between">
-			<div class=" justify-content-start  col-1">
-				<img src="./logoT2.png" alt="Mory Swap" style="max-width: 140px; margin-left: 80px;">
-			</div>
-			<div style="justify-self:end; " class=" ">
-				<br>
-				<div class="hrow   center">
-
-
-					<img src="./metamask.png" alt="MetaMask">
-
-					<button class="btn-signIn center	">
-						<img src="https://img.icons8.com/nolan/64/login-rounded-right.png"
-							style="width: 25px;" />
-						<span id="signIn"> sign in</span></button>
-				</div>
-			</div>
-
-		</div>
-		<!-- </div> -->
-		<div class="  text">
-
-			<h1 class="gradient-text">Mory Swap</h1>
-		</div>
-		<div class="descriptionMain">
-			<h2 class="">An outstanding decenteralized finance platform. More About
-				<a href="https://www.coindesk.com/learn/what-is-defi/" target="_blank">De Fi here</a>.
-			</h2>
-			<h2 class="">Steak your liquidity here and take profit. </h2>
-			<h2 class="">Register your NFT artworks <a onclick="goToElement('mint-div')">here</a> and put it on
-				the market. </h2>
-			<h2 class="">Check oout Mory Swap white paper <a onclick="goToElement('whitePaper')">here</a> and put it on
-				the market. </h2>
-		</div>
-
-
-
-
-
-
-
-
-
-		<br>
-		<br>
-		<br>
-		<br>
+	<div class="main">
 		<div class="con">
-
-			<!-- //=============    TRANSFER   ============= -->
-			<div class="function-div row justify-content-between">
-				<div class="function-text col-sm-12 col-4">
-					<h2>Transfer </h2>
-					<p> Easy peasy. you can transfer "MRY" here. just enter the destination address and
-						amount.</p>
-
-					<div class="warning-box">
-						<p><b>WARNING: </b>All of mory swap transactions ar irreversible so be carefull
-							about addresses and
-							actions and...</p>
-					</div>
-
-
-
-
+			<div class="col-12 row justify-content-between">
+				<div class=" justify-content-start  col-1">
+					<img src="./logoT2.png" alt="Mory Swap" style="max-width: 140px; margin-left: 80px;">
 				</div>
-				<div class=" function-action col-5">
-					<label for="transfer-destination">Transfer destination address:</label>
+				<div style="justify-self:end; " class=" ">
 					<br>
-					<input type="text" class="function-action-input" name="transfer-destination"
-						id="transfer-destination" placeholder="0x87B648.....">
-					<label for="transfer-destination">Transfer amount:</label>
-					<br>
-					<input type="number" class="function-action-input" name="transfer-amount"
-						id="transfer-amount" placeholder="1000" style="width: 70%;">
-
-					<button name="transfer" id="transfer" class="btn-transfer"> Send</button>
-				</div>
-			</div>
+					<div class="hrow   center">
 
 
-			<!-- //=============    MINE APPLE   ============= -->
-			<div class="function-div row justify-content-between">
-				<div class=" function-action col-5">
-					<h2>There are only <span>200</span> "APL" avaliable to mine. </h2>
+						<img src="./metamask.png" alt="MetaMask">
 
-					<label for="transfer-destination">
-						<img src="https://s20.picofile.com/file/8445915692/Rolling_1s_31px_3_.gif"
-							style="width: 15px;" alt="loading">
-						Have 1000 "MRY" in your wallet</label>
-					<br>
-					<br>
-					<label for="transfer-destination">
-						<img src="https://s20.picofile.com/file/8445915692/Rolling_1s_31px_3_.gif"
-							style="width: 15px;" alt="loading">
-						Have enough BNB to pay gas.</label>
-					<br>
-					<br>
-
-
-					<button name="transfer" id="transfer" class="btn-transfer" style="width: 60%;"> Mine me an
-						"APL" . </button>
-				</div>
-
-				<div class="function-text col-sm-12 col-4">
-					<h2>What is Apple coin</h2>
-					<p> Once you have 1000 "MRY" in your wallet, you can mine an apple coin by just burning
-						1000 "MRY".</p>
-					<p> There is an apple pool on the contract. Every time an NFT is minting, the owner of the
-						NFT will have to pay 200 "MRY" as the minting fee.</p>
-					<p> In order to increase the value of "MRY", 50% of the minting fee will be burned. The
-						other half will be transfered to the apple pool.</p>
-
-
-				</div>
-			</div>
-
-
-
-			<!-- //=============    MINT NFT   ============= -->
-			<div class="function-div row justify-content-between" id="mint-div">
-				<div class="function-text col-sm-12 col-4">
-					<h2>Minting NFT </h2>
-					<p> You can mint your own NFT on Mory Swap,
-						first you need to have 200 "MRY" in your address. then you need to need to enter
-						your "tokenURI". the NFT will be minted and registered for your address.</p>
-					<p> To learn how to create the tokenUri please read <a
-							onclick="goToElement('mint-guid-div')">this part.</a></p>
-
-
-
-					<p> In order to increase the value of "MRY", 50% of the minting fee will be burned. The
-						other half will be transfered to the apple pool.</p>
-
-
-				</div>
-				<div class=" function-action col-5">
-
-
-					<label for="transfer-destination">NFT tokenUri:</label>
-					<br>
-					<input type="text" class="function-action-input" name="transfer-amount"
-						id="transfer-amount"
-						placeholder="https://gateway.pinata.cloud/ipfs/QmcHy2JnPcU7vSYwAhjatDY9W7hkxkeMrqz8N4fapMsB34"
-						style="width: 70%;">
-
-					<button name="transfer" id="transfer" class="btn-transfer"> Mint</button>
-					<br>
-					<br>
-					<div class="warning-box">
-						<p><b>WARNING: </b>All of mory swap transactions ar irreversible so be carefull
-							about addresses and
-							actions and...</p>
+						<button class="btn-signIn center	">
+							<img src="https://img.icons8.com/nolan/64/login-rounded-right.png"
+								style="width: 25px;" />
+							<span id="signIn"> sign in</span></button>
 					</div>
 				</div>
+
+			</div>
+			<!-- </div> -->
+			<div class="  text">
+
+				<h1 class="gradient-text">Mory Swap</h1>
+			</div>
+			<div class="descriptionMain">
+				<h2 class="">An outstanding decenteralized finance platform. More About
+					<a href="https://www.coindesk.com/learn/what-is-defi/" target="_blank">De Fi here</a>.
+				</h2>
+				<h2 class="">Steak your liquidity here and take profit. </h2>
+				<h2 class="">Register your NFT artworks <a onclick="goToElement('mint-div')">here</a> and put it
+					on
+					the market. </h2>
+				<h2 class="">Check oout Mory Swap white paper <a onclick="goToElement('whitePaper')">here</a>
+					and put it on
+					the market. </h2>
 			</div>
 
-			<!-- //=============    REQUEST TO BUY NFT   ============= -->
-			<div w3-include-html="requestBuyNFT.html"></div>
 
 
 
-			<!-- //=============    WHITE PAPER   ============= -->
-			<div w3-include-html="whitePaper.html"></div>
-			
-		</div>
-		<div class="con">
-			<div class="function-div ">
-				<div class="function-text">
-					DeFi draws inspiration from blockchain, the technology behind the digital currency
-					bitcoin,
-					which
-					allows several entities to hold a copy of a history of transactions, meaning it isn’t
-					controlled
-					by a
-					single, central source. That’s important because centralized systems and human gatekeepers
-					can
-					limit
-					the speed and sophistication of transactions while offering users less direct control over
-					their
-					money. DeFi is distinct because it expands the use of blockchain from simple value
-					transfer to
-					more
-					complex financial use cases.
+
+
+
+
+
+			<br>
+			<br>
+			<br>
+			<br>
+			<div class="con">
+
+				<!-- //=============    TRANSFER   ============= -->
+				<div class="function-div row justify-content-between">
+					<div class="function-text col-sm-12 col-4">
+						<h2>Transfer </h2>
+						<p> Easy peasy. you can transfer "MRY" here. just enter the destination address and
+							amount.</p>
+
+						<div class="warning-box">
+							<p><b>WARNING: </b>All of mory swap transactions ar irreversible so be
+								carefull
+								about addresses and
+								actions and...</p>
+						</div>
+
+
+
+
+					</div>
+					<div class=" function-action col-5">
+						<label for="transfer-destination">Transfer destination address:</label>
+						<br>
+						<input type="text" class="function-action-input" name="transfer-destination"
+							id="transfer-destination" placeholder="0x87B648.....">
+						<label for="transfer-destination">Transfer amount:</label>
+						<br>
+						<input type="number" class="function-action-input" name="transfer-amount"
+							id="transfer-amount" placeholder="1000" style="width: 70%;">
+
+						<button name="transfer" id="transfer" class="btn-transfer"> Send</button>
+					</div>
+				</div>
+
+
+				<!-- //=============    MINE APPLE   ============= -->
+				<div class="function-div row justify-content-between">
+					<div class=" function-action col-5">
+						<h2>There are only <span>200</span> "APL" avaliable to mine. </h2>
+
+						<label for="transfer-destination">
+							<img src="https://s20.picofile.com/file/8445915692/Rolling_1s_31px_3_.gif"
+								style="width: 15px;" alt="loading">
+							Have 1000 "MRY" in your wallet</label>
+						<br>
+						<br>
+						<label for="transfer-destination">
+							<img src="https://s20.picofile.com/file/8445915692/Rolling_1s_31px_3_.gif"
+								style="width: 15px;" alt="loading">
+							Have enough BNB to pay gas.</label>
+						<br>
+						<br>
+
+
+						<button name="transfer" id="transfer" class="btn-transfer" style="width: 60%;"> Mine
+							me an
+							"APL" . </button>
+					</div>
+
+					<div class="function-text col-sm-12 col-4">
+						<h2>What is Apple coin</h2>
+						<p> Once you have 1000 "MRY" in your wallet, you can mine an apple coin by just
+							burning
+							1000 "MRY".</p>
+						<p> There is an apple pool on the contract. Every time an NFT is minting, the owner
+							of the
+							NFT will have to pay 200 "MRY" as the minting fee.</p>
+						<p> In order to increase the value of "MRY", 50% of the minting fee will be burned.
+							The
+							other half will be transfered to the apple pool.</p>
+
+
+					</div>
+				</div>
+
+
+
+				<!-- //=============    MINT NFT   ============= -->
+				<div class="function-div row justify-content-between" id="mint-div">
+					<div class="function-text col-sm-12 col-4">
+						<h2>Minting NFT </h2>
+						<p> You can mint your own NFT on Mory Swap,
+							first you need to have 200 "MRY" in your address. then you need to need to
+							enter
+							your "tokenURI". the NFT will be minted and registered for your address.</p>
+						<p> To learn how to create the tokenUri please read <a
+								onclick="goToElement('mint-guid-div')">this part.</a></p>
+
+
+
+						<p> In order to increase the value of "MRY", 50% of the minting fee will be burned.
+							The
+							other half will be transfered to the apple pool.</p>
+
+
+					</div>
+					<div class=" function-action col-5">
+
+
+						<label for="transfer-destination">NFT tokenUri:</label>
+						<br>
+						<input type="text" class="function-action-input" name="transfer-amount"
+							id="transfer-amount"
+							placeholder="https://gateway.pinata.cloud/ipfs/QmcHy2JnPcU7vSYwAhjatDY9W7hkxkeMrqz8N4fapMsB34"
+							style="width: 70%;">
+
+						<button name="transfer" id="transfer" class="btn-transfer"> Mint</button>
+						<br>
+						<br>
+						<div class="warning-box">
+							<p><b>WARNING: </b>All of mory swap transactions ar irreversible so be
+								carefull
+								about addresses and
+								actions and...</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- //=============    REQUEST TO BUY NFT   ============= -->
+				<div w3-include-html="requestBuyNFT.html"></div>
+
+
+
+				<!-- //=============    WHITE PAPER   ============= -->
+				<div w3-include-html="whitePaper.html"></div>
+
+			</div>
+			<div class="con">
+				<div class="function-div ">
+					<div class="function-text">
+						DeFi draws inspiration from blockchain, the technology behind the digital currency
+						bitcoin,
+						which
+						allows several entities to hold a copy of a history of transactions, meaning it
+						isn’t
+						controlled
+						by a
+						single, central source. That’s important because centralized systems and human
+						gatekeepers
+						can
+						limit
+						the speed and sophistication of transactions while offering users less direct
+						control over
+						their
+						money. DeFi is distinct because it expands the use of blockchain from simple value
+						transfer to
+						more
+						complex financial use cases.
+					</div>
+				</div>
+
+
+
+			</div>
+			<div class="con" id="mint-guid-div">
+				<div class="function-div ">
+
+					<div class="function-text">
+						<h2>How to create tokenUri: </h2>
+
+						We will use Pinata, a convenient IPFS API and toolkit, to store our NFT asset and
+						metadata to ensure our NFT is truly decentralized. If you don’t have a Pinata
+						account, sign up for a free account here and complete the steps to verify your
+						email.
+						<br>
+						<br>
+						<br>
+						Once you’ve created an account:
+						<br>
+						<br>
+						&nbsp &nbsp &nbsp &nbsp &nbsp - Navigate to the “Files” page and click the blue
+						"Upload" button at the top-left of
+						the page.
+						<br>
+						<br>
+
+						&nbsp &nbsp &nbsp &nbsp &nbsp - Upload an image to pinata — this will be the image
+						asset for your NFT. Feel free to
+						name the asset whatever you wish
+						<br>
+						<br>
+
+						After you upload, you'll see the file info in the table on the Files page. You'll
+						also see a CID column. You can copy the CID by clicking the copy button next to it.
+						You can view your upload at: https://gateway.pinata.cloud/ipfs/ YOUR CID . You can
+						find
+						the image we used on IPFS here, for example.
+						<br>
+						<br>
+
+						For the more visual learners, the steps above are summarized here:
+						<br>
+						<br>
+						<img src="https://gateway.pinata.cloud/ipfs/Qmcdt5VezYzAJDBc4qN5JbANy5paFg9iKDjq8YksRvZhtL"
+							alt=" how to get CID">
+						<br>
+						<br>
+						<br>
+						<br>
+						<p>Now, we’re going to upload one more document to Pinata. But before we do that, we
+							need to create it!</p>
+						<p>Download <a download href="./metadata.txt" target="_blank">this document</a> and
+							cosumize
+							it. Edit name and description to what ever you like. Change the CID in the
+							image url to your own CID.
+							It should be something like this:
+						</p>
+						<p>
+							&nbsp &nbsp https://gateway.pinata.cloud/ipfs/ + YOUR OWN CID
+						</p>
+						<p>Make sure image field points to the location of your IPFS image
+
+						</p>
+						<p> Once you’re done editing the json file, save it and upload it to Pinata,
+							following the same steps we did for uploading the image.</p>
+						<p>The document CID add at end of the gateway wuld be your tokenUri. like this
+							tokenUri:</p>
+						&nbsp &nbsp <a
+							href="https://gateway.pinata.cloud/ipfs/QmTuC5njxWhqfJ3SVwCNZX5cSCYh2zaBaE9oHZqigbiiQu" target="_blank">https://gateway.pinata.cloud/ipfs/QmTuC5njxWhqfJ3SVwCNZX5cSCYh2zaBaE9oHZqigbiiQu</a>
+						<p>When you click on it you can see the content of the document which of course is
+							on the IPFS.</p>
+							<p>Having this tokenUri you can go back to <a onclick="goToElement('mint-div')">Minting NFT section</a> and start to mint your NFT</p>
+					</div>
 				</div>
 			</div>
-
-
-			
-		</div>
-		<div class="con" id="mint-guid-div">
-			<div class="function-div ">
-				<div class="function-text">
-					DeFi draws inspiration from blockchain, the technology behind the digital currency
-					bitcoin,
-					which
-					allows several entities to hold a copy of a history of transactions, meaning it isn’t
-					controlled
-					by a
-					single, central source. That’s important because centralized systems and human gatekeepers
-					can
-					limit
-					the speed and sophistication of transactions while offering users less direct control over
-					their
-					money. DeFi is distinct because it expands the use of blockchain from simple value
-					transfer to
-					more
-					complex financial use cases.
-				</div>
-			</div>
-		</div>
-		<div class="con">
-			<div class="function-div ">
-				<div class="function-text">
-					DeFi draws inspiration from blockchain, the technology behind the digital currency
-					bitcoin,
-					which
-					allows several entities to hold a copy of a history of transactions, meaning it isn’t
-					controlled
-					by a
-					single, central source. That’s important because centralized systems and human gatekeepers
-					can
-					limit
-					the speed and sophistication of transactions while offering users less direct control over
-					their
-					money. DeFi is distinct because it expands the use of blockchain from simple value
-					transfer to
-					more
-					complex financial use cases.
+			<div class="con">
+				<div class="function-div ">
+					<div class="function-text">
+						DeFi draws inspiration from blockchain, the technology behind the digital currency
+						bitcoin,
+						which
+						allows several entities to hold a copy of a history of transactions, meaning it
+						isn’t
+						controlled
+						by a
+						single, central source. That’s important because centralized systems and human
+						gatekeepers
+						can
+						limit
+						the speed and sophistication of transactions while offering users less direct
+						control over
+						their
+						money. DeFi is distinct because it expands the use of blockchain from simple value
+						transfer to
+						more
+						complex financial use cases.
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 	<script type="text/javascript">
 		console.log("START");
 		includeHTML();

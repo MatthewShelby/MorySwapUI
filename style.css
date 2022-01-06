@@ -1,9 +1,10 @@
 
 
 .main{
-  width: 100%;
+  /* width: 100%; */
   height: 100vh;
   overflow: auto;
+  overflow-x: hidden;
 }
 li{
   margin-left: 2rem;
@@ -159,7 +160,7 @@ a{
           text-justify: inter-word;
     }
   body{
-        min-width: 500px;
+        min-width: 600px;
       background-repeat: no-repeat;
 	background-size: cover;
 	min-height: 100vh;
