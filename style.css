@@ -20,7 +20,7 @@ a{
 }
 #signIn{
       font-size: x-large;
-      padding: 5px;
+      padding: 0.2rem;
 }
 .center {
       display: flex;
@@ -37,18 +37,18 @@ a{
       transform: translateY(-50%);
     }
 .btn-signIn{
-      border: 2px gray solid;
-      border-radius: 7px;
+      border: 0.125rem gray solid;
+      border-radius: 0.43;
       background-color: transparent;
       color: white;
-      margin-left: 20px;
+      margin-left: 1.25rem;
       /* font-size: 1.2rem; */
       /* margin-top: -5px; */
 }
 .descriptionMain{
       color: white;
       font-size: medium;
-      margin-left: 90px;
+      margin-left: 5.6rem;
       font-weight: 100;
       font-family:   sans-serif;
       /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
@@ -151,7 +151,7 @@ a{
     }
 
 .con{
-      margin:50px
+      margin:3.125rem
 }
     .head-title{
           color: rgb(209, 150, 150);
@@ -160,7 +160,7 @@ a{
           text-justify: inter-word;
     }
   body{
-        min-width: 600px;
+        min-width: 37.5rem;
       background-repeat: no-repeat;
 	background-size: cover;
 	min-height: 100vh;
@@ -174,15 +174,15 @@ a{
       background: linear-gradient(91.26deg, #8AD4EC 0%, #EF96FF 21.74%, #FF56A9 54.03%, #FFAA6C 85.28%);
 
 position: absolute;
-width: 558px;
-height: 45px;
-left: 71.2px;
-top: 253.6px;
+width: 34.8rem;
+height: 2.8rem;
+left: 4.45rem;
+top: 15.85rem;
 font-family: Poppins;
 font-style: normal;
 font-weight: 500;
-font-size: 90px;
-line-height: 45px;
+font-size: 5.6rem;
+line-height: 2.8rem;
 /* identical to box height, or 44% */
 
 font-feature-settings: 'pnum' on, 'lnum' on;
@@ -195,21 +195,21 @@ font-feature-settings: 'pnum' on, 'lnum' on;
     }
 .text{
 font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-font-size: 61px;
+font-size: 3.8rem;
 font-style: normal;
 font-weight: 500;
 /* line-height: 45px; */
 letter-spacing: 0em;
 text-align: left;
-margin-left: 80px;
-margin-top: -80px;
-margin-bottom: -80px;
+margin-left: 5rem;
+margin-top: -5rem;
+margin-bottom: -5rem;
 }
 
 .backBox{
-      height: 45px;
-width: 558px;
-left: 71.19999694824219px;
+      height: 2.8rem;
+width: 34.8rem;
+left: 4.45rem;
 /* top: 253.60000610351562px; */
 border-radius: undefinedpx;
 
