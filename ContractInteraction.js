@@ -1,14 +1,64 @@
 
-var provider;
 
+//#region ============================  MINT NFT  ===============================
+function MintNFT() {
+      if (!checkBCC()) { return }
+      if (balance < 200) {
+            window.alert('Your balance is not enough!')
+            return
+      }
+
+
+      console.log('try to Mint NFT ');
+      avoidCall('mintNFTBTN');
+
+      var tokenUri = document.getElementById('NFT-mintTokenUri').value
+      let myAddress = signer.getAddress()
+      myContract._safeMintNFT(myAddress,tokenUri);
+}
+
+
+
+
+////#endregion
+
+
+
+//#region ============================  MINE APPLE   ============================
+
+function MineApple() {
+      if (!checkBCC()) { return }
+      if (balance < 1000) {
+            window.alert('Your balance is not enough!')
+            return
+      }
+
+
+      console.log('try to Mine Apple ');
+      avoidCall('mineApple');
+
+      myContract._mineApple();
+}
+
+
+//#endregion
+
+
+//#region    check for metamask
+var provider;
+var signer;
 var hasMetamask = false;
-function checkForMetamask() {
+async function checkForMetamask() {
       if (window.ethereum === undefined) {
             sendAlert('You need to install MetaMask Extention.')
       } else {
             hasMetamask = true;
             provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+            await provider.send("eth_requestAccounts", []);
+            signer = await provider.getSigner();
+            //signer = provider.getSigner();
       }
+      return Promise.resolve(true);
 }
 
 function sendAlert(msg) {
@@ -16,6 +66,138 @@ function sendAlert(msg) {
             window.alert(msg);
       }, 1000)
 }
+
+//#endregion 
+
+
+
+//#region ============================  Global   ============================
+
+var myContract;
+var isContractInit = false;
+const contractAddress = "0xF27b70Bd5f94d9f86E3724E7305103b24A17D74A";
+
+function tryInitContract() {
+      myContract = new ethers.Contract(contractAddress, ABI, signer);
+      isContractInit = true;
+      return Promise.resolve(true);
+
+}
+
+//#endregion
+
+
+
+
+//#region ============================  Sign In  ============================
+var isSignedIn = false;
+function trySingIn() {
+      checkForMetamask().then(() => {
+            if (hasMetamask) {
+                  tryInitContract().then(() => {
+                        if (isContractInit) {
+                              tryGetBalance().then(() => {
+                                    if (balanceFetched) {
+                                          //const loginButton = document.getElementById('signInBTN')
+                                          document.getElementById('signInBTN').style.display = "none";
+                                          document.getElementById('userBalance').style.display = "block";
+                                          printBalance();
+                                          isSignedIn = true;
+                                    }
+                              })
+                        }
+                  })
+            }
+      }
+      );
+
+}
+
+
+var balance = 0;
+var balanceFetched = false;
+async function tryGetBalance() {
+
+      myContract.balanceOf(signer.getAddress()).then(function (value) {
+            balance = BigInt(value._hex).toString();
+            console.log('balance: ' + balance);
+            printBalance();
+
+      });
+
+      balanceFetched = true;
+      return Promise.resolve(true);
+
+}
+
+function printBalance() {
+      setTimeout(() => {
+            document.getElementById('balanceAmount').innerHTML = balance;
+      }, 500)
+}
+
+//#endregion
+
+
+function checkBCC() {
+      if (!hasMetamask) {
+            sendAlert('You need to install MetaMask Extention.');
+            return false
+      }
+      if (!isSignedIn) {
+            sendAlert('You are not signed in. please try later');
+            return false
+      }
+      if (!isContractInit) {
+            sendAlert('You are not connected to caontract. please try later');
+            return false
+      } else {
+            return true
+      }
+}
+
+
+//#region ============================  TRANSFER  ============================
+
+function transfer() {
+      if (!checkBCC()) { return }
+
+      var transferDestination = document.getElementById('transfer-destination').value
+      var transferAmount = document.getElementById('transfer-amount').value
+
+      console.log('try to transfer ' + transferAmount + ' MRY to: ' + transferDestination);
+      avoidCall('transferBTN');
+
+      myContract.transfer(transferDestination, transferAmount);
+
+}
+
+var canTransfer = true;
+function avoidCall(id) {
+      document.getElementById(id).disabled = true;
+
+      setTimeout(() => {
+            document.getElementById(id).disabled = false;
+
+      }, 8000)
+}
+
+
+//#endregion
+
+
+
+// var Abal = myContract.appleBalanceOf(signer.getAddress()).then(function (value) {
+//       console.log(BigInt(value._hex).toString());
+// });
+
+
+
+
+
+
+
+
 
 
 
@@ -31,7 +213,7 @@ function test2() {
 
 
 
-//#region =======    ABI
+//#region  ABI
 const ABI =
       [
             {
@@ -491,4 +673,4 @@ const ABI =
       ]
 
 
-///#endregion
+//#endregion

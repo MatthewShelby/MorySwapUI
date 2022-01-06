@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="style2.css">
 	<script type="text/javascript" src="pageFunction.js"></script>
+	<script type="text/javascript" src="APIInterface.js"></script>
 	<script type="text/javascript" src="ContractInteraction.js"></script>
 	<!-- <link href="./bootstrap<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">-5.1.3-dist/css/bootstrap.css" rel="stylesheet">
 	<link href="./bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -30,10 +31,16 @@
 
 						<img src="./metamask.png" alt="MetaMask">
 
-						<button class="btn-signIn center	">
+						<button class="btn-signIn center	" id="signInBTN">
 							<img src="https://img.icons8.com/nolan/64/login-rounded-right.png"
 								style="width: 25px;" />
 							<span id="signIn"> sign in</span></button>
+
+						<div class="userBalance" id="userBalance">
+							Current Balance:
+							<br>
+							<span id="balanceAmount">0</span> MRY
+						</div>
 					</div>
 				</div>
 
@@ -98,7 +105,7 @@
 						<input type="number" class="function-action-input" name="transfer-amount"
 							id="transfer-amount" placeholder="1000" style="width: 70%;">
 
-						<button name="transfer" id="transfer" class="btn-transfer"> Send</button>
+						<button onclick="transfer()" id="transferBTN" class="btn-transfer"> Send</button>
 					</div>
 				</div>
 
@@ -122,7 +129,7 @@
 						<br>
 
 
-						<button name="transfer" id="transfer" class="btn-transfer" style="width: 60%;"> Mine
+						<button onclick="MineApple()" id="mineApple" class="btn-transfer" style="width: 60%;"> Mine
 							me an
 							"APL" . </button>
 					</div>
@@ -169,12 +176,11 @@
 
 						<label for="transfer-destination">NFT tokenUri:</label>
 						<br>
-						<input type="text" class="function-action-input" name="transfer-amount"
-							id="transfer-amount"
+						<input type="text" class="function-action-input" id="NFT-mintTokenUri"
 							placeholder="https://gateway.pinata.cloud/ipfs/QmcHy2JnPcU7vSYwAhjatDY9W7hkxkeMrqz8N4fapMsB34"
 							style="width: 70%;">
 
-						<button name="transfer" id="transfer" class="btn-transfer"> Mint</button>
+						<button onclick="MintNFT()" id="mintNFTBTN" class="btn-transfer"> Mint</button>
 						<br>
 						<br>
 						<div class="warning-box">
@@ -261,7 +267,7 @@
 						For the more visual learners, the steps above are summarized here:
 						<br>
 						<br>
-						<img src="https://gateway.pinata.cloud/ipfs/Qmcdt5VezYzAJDBc4qN5JbANy5paFg9iKDjq8YksRvZhtL"
+						<img style="max-width: 100%;" src="https://gateway.pinata.cloud/ipfs/Qmcdt5VezYzAJDBc4qN5JbANy5paFg9iKDjq8YksRvZhtL"
 							alt=" how to get CID">
 						<br>
 						<br>
@@ -285,35 +291,63 @@
 							following the same steps we did for uploading the image.</p>
 						<p>The document CID add at end of the gateway wuld be your tokenUri. like this
 							tokenUri:</p>
-						&nbsp &nbsp <a
-							href="https://gateway.pinata.cloud/ipfs/QmTuC5njxWhqfJ3SVwCNZX5cSCYh2zaBaE9oHZqigbiiQu" target="_blank">https://gateway.pinata.cloud/ipfs/QmTuC5njxWhqfJ3SVwCNZX5cSCYh2zaBaE9oHZqigbiiQu</a>
+						<a
+								href="https://gateway.pinata.cloud/ipfs/QmTuC5njxWhqfJ3SVwCNZX5cSCYh2zaBaE9oHZqigbiiQu"
+								target="_blank"
+								style="margin-left: 20px; word-wrap: break-word;"> https://gateway.pinata.cloud/ipfs/QmTuC5njxWhqfJ3SVwCNZX5cSCYh2zaBaE9oHZqigbiiQu</a>
+						
 						<p>When you click on it you can see the content of the document which of course is
 							on the IPFS.</p>
-							<p>Having this tokenUri you can go back to <a onclick="goToElement('mint-div')">Minting NFT section</a> and start to mint your NFT</p>
+						<p>Having this tokenUri you can go back to <a
+								onclick="goToElement('mint-div')">Minting NFT section</a> and start to
+							mint your NFT</p>
 					</div>
 				</div>
 			</div>
 			<div class="con">
 				<div class="function-div ">
-					<div class="function-text">
-						DeFi draws inspiration from blockchain, the technology behind the digital currency
-						bitcoin,
-						which
-						allows several entities to hold a copy of a history of transactions, meaning it
-						isn’t
-						controlled
-						by a
-						single, central source. That’s important because centralized systems and human
-						gatekeepers
-						can
-						limit
-						the speed and sophistication of transactions while offering users less direct
-						control over
-						their
-						money. DeFi is distinct because it expands the use of blockchain from simple value
-						transfer to
-						more
-						complex financial use cases.
+					<div class="function-text" >
+					<h2>Recent transactions:</h2>
+					<div id="trlist"></div>
+						<!-- <br>
+						<br>
+						<br>
+						<div class="transaction-record">
+							<h4>Transaction information:</h4>
+							<p>Type: <span id="type1"></span></p>
+							<p>From: <span id="from1"></span></p>
+							<p>To: <span id="to1"></span></p>
+							<p>Amount: <span id="Vamount1"></span></p>
+
+						</div>
+						<br>
+						<div class="transaction-record">
+							<h4>Transaction information:</h4>
+							<p>Type: <span id="type2"></span></p>
+							<p>From: <span id="from2"></span></p>
+							<p>To: <span id="to2"></span></p>
+							<p>Amount: <span id="Vamount2"></span></p>
+						</div>
+						<br>
+						<div class="transaction-record">
+							<h4>Transaction information:</h4>
+							<p>Type: <span id="type3"></span></p>
+							<p>From: <span id="from3"></span></p>
+							<p>To: <span id="to3"></span></p>
+							<p>Amount: <span id="Vamount3"></span></p>
+						</div>
+						<br>
+						<div class="transaction-record">
+							<h4>Transaction information:</h4>
+							<p>Type: <span id="type4"></span></p>
+							<p>From: <span id="from4"></span></p>
+							<p>To: <span id="to4"></span></p>
+							<p>Amount: <span id="Vamount4"></span></p>
+
+						</div>
+						<br> -->
+
+						
 					</div>
 				</div>
 			</div>
@@ -326,15 +360,31 @@
 		console.log("START");
 		includeHTML();
 		test2()
-		checkForMetamask();
-
-		const contractAddress = "0xF27b70Bd5f94d9f86E3724E7305103b24A17D74A";
+		trySingIn();
+		setBlocks();
+		getRecentTransactions();
 		//const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
 		//getBalance("0x87B64804e36f20acA9052D3b4Cd7188D41b59f97");
 
+		// function httpGet(theUrl) {
+		// 	var request = new XMLHttpRequest(); // Create a request variable and assign a new XMLHttpRequest object to it.
+		// 	request.open('GET', theUrl); // Open a new connection, using the GET request on the URL endpoint
+		// 	request.send();
+		// 	var alres;
+		// 	request.onload = async function () {
+		// 		var data = JSON.parse(this.response);
+		// 		//var nt =  data.item[0];
 
+		// 		console.info(data) // depending on your response targert your desired property.
+		// 		var count = data.data.pagination.total_count;
+		// 		console.log('count: '+count) // depending on your response targert your desired property.
+		// 		console.info(data.data.items[count-1].height) // depending on your response targert your desired property.
 
+		// 	}
+		// 	//return alres;
+		// }
+		// httpGet()
 
 
 		async function getBalance(wallet) {
@@ -380,7 +430,7 @@
 
 		}
 
-		 
+
 
 	</script>
 
