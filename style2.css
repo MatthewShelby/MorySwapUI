@@ -58,16 +58,17 @@ cursor: default;
 .function-div{
       border-radius: 30px;
       border:white 2px solid;
-      margin: 2rem;
+      margin: 8%;
 
 }
+
 .function-action{
 
 
       /* width: 33%; */
       color: white;
-      margin: 3rem;
-      padding-top: 3rem;
+      margin: 4%;
+      padding-top: 4%;
       font-family: sans-serif;
       
 }
@@ -86,7 +87,7 @@ cursor: default;
       /* flex: 0 0 auto;
       width: 33.33333333%; */
       color: white;
-      margin: 3rem;
+      margin: 4%;
       text-align: justify;
       text-justify: inter-word;
       font-family: sans-serif;

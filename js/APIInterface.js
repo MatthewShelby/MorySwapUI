@@ -60,7 +60,12 @@ function getRecentTransactions() {
 
 
 function printTransactions() {
-      for (let index = transactions.items.length; index >= 0; index--) {
+      let maxcnt = 6;
+      if (transactions.items.length <= 6) {
+            maxcnt = 0;
+      }
+      let end = transactions.items.length - maxcnt;
+      for (let index = transactions.items.length; index >= end ; index--) {
             var type1;
             try {
                   type1 = transactions.items[index].decoded;

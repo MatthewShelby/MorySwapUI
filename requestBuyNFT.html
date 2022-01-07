@@ -5,23 +5,23 @@
 
             <label for="nft-TokenId">NFT token Id:</label>
             <br>
-            <input type="text" class="function-action-input" name="nft-TokenId" id="nft-TokenId" placeholder="2101"
+            <input type="text" class="function-action-input"  id="nft-buy-TokenId" placeholder="2101"
                   style="width: 70%;">
             <br>
             <br>
             <label for="nft-seller">NFT seller address:</label>
             <br>
-            <input type="text" class="function-action-input" name="nft-seller" id="nft-seller"
+            <input type="text" class="function-action-input"   id="nft-seller"
                   placeholder="0x87B648....." style="width: 70%;">
             <br>
             <br>
             <label for="nft-price">Price ("MRY"): </label>
             <br>
-            <input type="number" class="function-action-input" name="nft-price" id="nft-price" placeholder="1350"
+            <input type="number" class="function-action-input"   id="nft-buy-price" placeholder="1350"
                   style="width: 70%;">
             <br>
 
-            <button name="request" id="request" class="btn-transfer"> Request</button>
+            <button onclick="NuyNFT()" id="requestByuNft" class="btn-transfer"> Request</button>
 
       </div>
 
@@ -67,23 +67,23 @@
 
             <label for="nft-TokenId-acceptance">NFT token Id:</label>
             <br>
-            <input type="text" class="function-action-input" name="nft-TokenId-acceptance" id="nft-TokenId-acceptance"
+            <input type="text" class="function-action-input"   id="nft-TokenId-acceptance"
                   placeholder="2101" style="width: 70%;">
             <br>
             <br>
             <label for="nft-seller-acceptance">Buyer address:</label>
             <br>
-            <input type="text" class="function-action-input" name="nft-buyer-acceptance" id="nft-buyer-acceptance"
+            <input type="text" class="function-action-input"  id="nft-buyer-address"
                   placeholder="0x87B648....." style="width: 70%;">
             <br>
             <br>
             <label for="nft-price-acceptance">Price ("MRY"): </label>
             <br>
-            <input type="number" class="function-action-input" name="nft-price-acceptance" id="nft-price-acceptance"
+            <input type="number" class="function-action-input"   id="nft-price-acceptance"
                   placeholder="1350" style="width: 70%;">
             <br>
 
-            <button name="request" id="request" class="btn-transfer"> Accept</button>
+            <button onclick="SellNFTAccept()" id="acceptNFTSell" class="btn-transfer"> Accept</button>
 
       </div>
 
@@ -101,17 +101,17 @@
 
             <label for="apl-seller">Apple seller address:</label>
             <br>
-            <input type="text" class="function-action-input" name="apl-seller" id="apl-seller"
+            <input type="text" class="function-action-input"   id="apl-seller-address"
                   placeholder="0x87B648....." style="width: 70%;">
             <br>
             <br>
             <label for="nft-price">Price ("MRY"): </label>
             <br>
-            <input type="number" class="function-action-input" name="apl-price" id="apl-price" placeholder="1350"
+            <input type="number" class="function-action-input"   id="apl-buy-price" placeholder="1350"
                   style="width: 70%;">
             <br>
 
-            <button name="request" id="request-apl-buy" class="btn-transfer"> Request</button>
+            <button onclick="BuyApple()" id="request-apl-buy" class="btn-transfer"> Request</button>
 
       </div>
 
@@ -156,17 +156,17 @@
 
             <label for="apl-seller-acceptance">Buyer address:</label>
             <br>
-            <input type="text" class="function-action-input" name="apl-buyer-acceptance" id="apl-buyer-acceptance"
+            <input type="text" class="function-action-input" id="apl-sell-acceptance"
                   placeholder="0x87B648....." style="width: 70%;">
             <br>
             <br>
             <label for="nft-price-acceptance">Price ("MRY"): </label>
             <br>
-            <input type="number" class="function-action-input" name="apl-price-acceptance" id="apl-price-acceptance"
+            <input type="number" class="function-action-input"   id="apl-sell-price-acceptance"
                   placeholder="1350" style="width: 70%;">
             <br>
 
-            <button name="request" id="accept-apl-sell" class="btn-transfer"> Accept</button>
+            <button onclick="SellAppleAccept()" id="accept-apl-sell" class="btn-transfer"> Accept</button>
 
       </div>
 

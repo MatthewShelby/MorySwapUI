@@ -1,6 +1,6 @@
 
 
-//#region ============================  MINT NFT  ===============================
+//#region ============================   NFT  ===============================
 function MintNFT() {
       if (!checkBCC()) { return }
       if (balance < 200) {
@@ -14,10 +14,34 @@ function MintNFT() {
 
       var tokenUri = document.getElementById('NFT-mintTokenUri').value
       let myAddress = signer.getAddress()
-      myContract._safeMintNFT(myAddress,tokenUri);
+      myContract._safeMintNFT(myAddress, tokenUri);
 }
 
 
+function BuyNFT() {
+      if (!checkBCC()) { return }
+
+      console.log('try to Buy NFT ');
+      avoidCall('requestByuNft');
+
+      var seller = document.getElementById('nft-seller').value
+      var price = document.getElementById('nft-buy-price').value
+      var tokenId = document.getElementById('nft-buy-TokenId').value
+      myContract._buyNFTRequest(seller, price, tokenId);
+}
+
+
+function SellNFTAccept() {
+      if (!checkBCC()) { return }
+
+      console.log('try to Sell NFT ');
+      avoidCall('acceptNFTSell');
+
+      var buyer = document.getElementById('nft-buyer-address').value
+      var price = document.getElementById('nft-price-acceptance').value
+      var tokenId = document.getElementById('nft-TokenId-acceptance').value
+      myContract._sellNFTAcception(buyer, tokenId, price);
+}
 
 
 ////#endregion
@@ -38,6 +62,31 @@ function MineApple() {
       avoidCall('mineApple');
 
       myContract._mineApple();
+}
+
+
+
+function BuyApple() {
+      if (!checkBCC()) { return }
+
+      console.log('try to Buy APL ');
+      avoidCall('request-apl-buy');
+
+      var seller = document.getElementById('apl-seller-address').value
+      var price = document.getElementById('apl-buy-price').value
+      myContract._buyAppleRequest(seller, price);
+}
+
+
+function SellAppleAccept() {
+      if (!checkBCC()) { return }
+
+      console.log('try to Sell APL ');
+      avoidCall('accept-apl-sell');
+
+      var buyer = document.getElementById('apl-sell-acceptance').value
+      var price = document.getElementById('apl-sell-price-acceptance').value
+      myContract._sellAppleAcception(buyer, price);
 }
 
 
