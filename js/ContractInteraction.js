@@ -14,7 +14,10 @@ function MintNFT() {
 
       var tokenUri = document.getElementById('NFT-mintTokenUri').value
       let myAddress = signer.getAddress()
-      myContract._safeMintNFT(myAddress, tokenUri);
+      myContract._safeMintNFT(myAddress, tokenUri).then(()=>{
+		  	  location.reload(); 
+	  });
+
 }
 
 
@@ -44,7 +47,7 @@ function SellNFTAccept() {
 }
 
 
-////#endregion
+//#endregion
 
 
 
@@ -124,9 +127,10 @@ function sendAlert(msg) {
 
 var myContract;
 var isContractInit = false;
-const contractAddress = "0xF27b70Bd5f94d9f86E3724E7305103b24A17D74A";
+const contractAddress = "0x783fd7e04D2f755436030693c7239FBA0aEdaF6A";
 
 function tryInitContract() {
+	document.getElementById('contract-address').innerHTML = '"'+contractAddress+'"';
       myContract = new ethers.Contract(contractAddress, ABI, signer);
       isContractInit = true;
       return Promise.resolve(true);
@@ -228,13 +232,37 @@ function avoidCall(id) {
       setTimeout(() => {
             document.getElementById(id).disabled = false;
 
-      }, 8000)
+      }, 80000)
 }
 
 
 //#endregion
 
+function sendTest() {
+      if (!checkBCC()) { return }
 
+      var transferDestination = document.getElementById('transfer-destination').value
+      var transferAmount = document.getElementById('transfer-amount').value
+
+      console.log('request for test');
+      avoidCall('reqBTN');
+
+      myContract.giveMeTestMRY();
+
+}
+
+function getContractAddress() {
+      if (!checkBCC()) { return }
+
+      var transferDestination = document.getElementById('transfer-destination').value
+      var transferAmount = document.getElementById('transfer-amount').value
+
+      console.log('request for test');
+      avoidCall('reqBTN');
+
+      myContract.giveMeTestMRY();
+
+}
 
 // var Abal = myContract.appleBalanceOf(signer.getAddress()).then(function (value) {
 //       console.log(BigInt(value._hex).toString());
@@ -264,462 +292,750 @@ function test2() {
 
 //#region  ABI
 const ABI =
-      [
-            {
-                  "inputs": [],
-                  "stateMutability": "nonpayable",
-                  "type": "constructor"
-            },
-            {
-                  "anonymous": false,
-                  "inputs": [
-                        {
-                              "indexed": true,
-                              "internalType": "address",
-                              "name": "from",
-                              "type": "address"
-                        },
-                        {
-                              "indexed": true,
-                              "internalType": "address",
-                              "name": "to",
-                              "type": "address"
-                        },
-                        {
-                              "indexed": false,
-                              "internalType": "uint256",
-                              "name": "value",
-                              "type": "uint256"
-                        }
-                  ],
-                  "name": "ApproveAppleBuy",
-                  "type": "event"
-            },
-            {
-                  "anonymous": false,
-                  "inputs": [
-                        {
-                              "indexed": true,
-                              "internalType": "address",
-                              "name": "_from",
-                              "type": "address"
-                        },
-                        {
-                              "indexed": false,
-                              "internalType": "uint256",
-                              "name": "_value",
-                              "type": "uint256"
-                        }
-                  ],
-                  "name": "Irrigate",
-                  "type": "event"
-            },
-            {
-                  "anonymous": false,
-                  "inputs": [
-                        {
-                              "indexed": true,
-                              "internalType": "address",
-                              "name": "_from",
-                              "type": "address"
-                        },
-                        {
-                              "indexed": true,
-                              "internalType": "address",
-                              "name": "to",
-                              "type": "address"
-                        }
-                  ],
-                  "name": "MineApple",
-                  "type": "event"
-            },
-            {
-                  "anonymous": false,
-                  "inputs": [
-                        {
-                              "indexed": true,
-                              "internalType": "address",
-                              "name": "from",
-                              "type": "address"
-                        },
-                        {
-                              "indexed": true,
-                              "internalType": "address",
-                              "name": "to",
-                              "type": "address"
-                        },
-                        {
-                              "indexed": false,
-                              "internalType": "uint256",
-                              "name": "value",
-                              "type": "uint256"
-                        }
-                  ],
-                  "name": "Transfer",
-                  "type": "event"
-            },
-            {
-                  "inputs": [
-                        {
-                              "internalType": "address",
-                              "name": "seller",
-                              "type": "address"
-                        },
-                        {
-                              "internalType": "uint256",
-                              "name": "price",
-                              "type": "uint256"
-                        }
-                  ],
-                  "name": "_buyAppleRequest",
-                  "outputs": [
-                        {
-                              "internalType": "bool",
-                              "name": "",
-                              "type": "bool"
-                        }
-                  ],
-                  "stateMutability": "nonpayable",
-                  "type": "function"
-            },
-            {
-                  "inputs": [
-                        {
-                              "internalType": "address",
-                              "name": "seller",
-                              "type": "address"
-                        },
-                        {
-                              "internalType": "uint256",
-                              "name": "price",
-                              "type": "uint256"
-                        },
-                        {
-                              "internalType": "uint256",
-                              "name": "tokenId",
-                              "type": "uint256"
-                        }
-                  ],
-                  "name": "_buyNFTRequest",
-                  "outputs": [],
-                  "stateMutability": "nonpayable",
-                  "type": "function"
-            },
-            {
-                  "inputs": [],
-                  "name": "_mineApple",
-                  "outputs": [],
-                  "stateMutability": "nonpayable",
-                  "type": "function"
-            },
-            {
-                  "inputs": [],
-                  "name": "_msgSender",
-                  "outputs": [
-                        {
-                              "internalType": "address",
-                              "name": "",
-                              "type": "address"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [
-                        {
-                              "internalType": "address",
-                              "name": "to",
-                              "type": "address"
-                        },
-                        {
-                              "internalType": "string",
-                              "name": "uri",
-                              "type": "string"
-                        }
-                  ],
-                  "name": "_safeMintNFT",
-                  "outputs": [
-                        {
-                              "internalType": "uint256",
-                              "name": "",
-                              "type": "uint256"
-                        }
-                  ],
-                  "stateMutability": "nonpayable",
-                  "type": "function"
-            },
-            {
-                  "inputs": [
-                        {
-                              "internalType": "address",
-                              "name": "buyer",
-                              "type": "address"
-                        },
-                        {
-                              "internalType": "uint256",
-                              "name": "sellPrice",
-                              "type": "uint256"
-                        }
-                  ],
-                  "name": "_sellAppleAcception",
-                  "outputs": [
-                        {
-                              "internalType": "bool",
-                              "name": "",
-                              "type": "bool"
-                        }
-                  ],
-                  "stateMutability": "nonpayable",
-                  "type": "function"
-            },
-            {
-                  "inputs": [
-                        {
-                              "internalType": "address",
-                              "name": "buyer",
-                              "type": "address"
-                        },
-                        {
-                              "internalType": "uint256",
-                              "name": "tokenId",
-                              "type": "uint256"
-                        },
-                        {
-                              "internalType": "uint256",
-                              "name": "sellerPrice",
-                              "type": "uint256"
-                        }
-                  ],
-                  "name": "_sellNFTAcception",
-                  "outputs": [],
-                  "stateMutability": "nonpayable",
-                  "type": "function"
-            },
-            {
-                  "inputs": [
-                        {
-                              "internalType": "uint256",
-                              "name": "tokenId",
-                              "type": "uint256"
-                        }
-                  ],
-                  "name": "_uriOf",
-                  "outputs": [
-                        {
-                              "internalType": "string",
-                              "name": "",
-                              "type": "string"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [
-                        {
-                              "internalType": "address",
-                              "name": "account",
-                              "type": "address"
-                        }
-                  ],
-                  "name": "appleBalanceOf",
-                  "outputs": [
-                        {
-                              "internalType": "uint256",
-                              "name": "",
-                              "type": "uint256"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [],
-                  "name": "appleName",
-                  "outputs": [
-                        {
-                              "internalType": "string",
-                              "name": "",
-                              "type": "string"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [],
-                  "name": "appleSymbol",
-                  "outputs": [
-                        {
-                              "internalType": "string",
-                              "name": "",
-                              "type": "string"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [
-                        {
-                              "internalType": "address",
-                              "name": "account",
-                              "type": "address"
-                        }
-                  ],
-                  "name": "balanceOf",
-                  "outputs": [
-                        {
-                              "internalType": "uint256",
-                              "name": "",
-                              "type": "uint256"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [],
-                  "name": "decimals",
-                  "outputs": [
-                        {
-                              "internalType": "uint256",
-                              "name": "",
-                              "type": "uint256"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [],
-                  "name": "name",
-                  "outputs": [
-                        {
-                              "internalType": "string",
-                              "name": "",
-                              "type": "string"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [],
-                  "name": "nftName",
-                  "outputs": [
-                        {
-                              "internalType": "string",
-                              "name": "",
-                              "type": "string"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [
-                        {
-                              "internalType": "address",
-                              "name": "account",
-                              "type": "address"
-                        }
-                  ],
-                  "name": "nftOwnedNumberOf",
-                  "outputs": [
-                        {
-                              "internalType": "uint256",
-                              "name": "",
-                              "type": "uint256"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [],
-                  "name": "nftSymbol",
-                  "outputs": [
-                        {
-                              "internalType": "string",
-                              "name": "",
-                              "type": "string"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [
-                        {
-                              "internalType": "uint256",
-                              "name": "tokenId",
-                              "type": "uint256"
-                        }
-                  ],
-                  "name": "ownerOf",
-                  "outputs": [
-                        {
-                              "internalType": "address",
-                              "name": "",
-                              "type": "address"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [],
-                  "name": "symbol",
-                  "outputs": [
-                        {
-                              "internalType": "string",
-                              "name": "",
-                              "type": "string"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [],
-                  "name": "totalSupply",
-                  "outputs": [
-                        {
-                              "internalType": "uint256",
-                              "name": "",
-                              "type": "uint256"
-                        }
-                  ],
-                  "stateMutability": "view",
-                  "type": "function"
-            },
-            {
-                  "inputs": [
-                        {
-                              "internalType": "address",
-                              "name": "recipient",
-                              "type": "address"
-                        },
-                        {
-                              "internalType": "uint256",
-                              "name": "amount",
-                              "type": "uint256"
-                        }
-                  ],
-                  "name": "transfer",
-                  "outputs": [
-                        {
-                              "internalType": "bool",
-                              "name": "",
-                              "type": "bool"
-                        }
-                  ],
-                  "stateMutability": "nonpayable",
-                  "type": "function"
-            }
-      ]
+    [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "Transfer",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "seller",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			}
+		],
+		"name": "_buyAppleRequest",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "_buyNFTRequest",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "_collectIrrigations",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "_mineApple",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "_msgSender",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "uri",
+				"type": "string"
+			}
+		],
+		"name": "_safeMintNFT",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "buyer",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "sellPrice",
+				"type": "uint256"
+			}
+		],
+		"name": "_sellAppleAcception",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "_uriOf",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "appleBalanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "appleName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "appleSymbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "cancelNFTSell",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "decimals",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllAuctions",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "basePrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "auctionMaturity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "highestBid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "currentOwner",
+						"type": "address"
+					}
+				],
+				"internalType": "struct MorySwapContract.Auction[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllNFTs",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllSells",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct MorySwapContract.SellTicket[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "getAuctionbyId",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "basePrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "auctionMaturity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "highestBid",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "currentOwner",
+						"type": "address"
+					}
+				],
+				"internalType": "struct MorySwapContract.Auction",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getContractAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getDoneSells",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timeStamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "wasAuction",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct MorySwapContract.DoneSell[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getMyNFTs",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "getSellById",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct MorySwapContract.SellTicket",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "giveMeTestMRY",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "giveTime",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "isFreezed",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "basePrice",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "daysH",
+				"type": "uint256"
+			}
+		],
+		"name": "listAuction",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			}
+		],
+		"name": "listNFTSell",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "nftName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "nftOwnedNumberOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "nftSymbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "ownerOf",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "bidPrice",
+				"type": "uint256"
+			}
+		],
+		"name": "placeBid",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "redeemAuction",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "recipient",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
+
+
+
 
 
 //#endregion

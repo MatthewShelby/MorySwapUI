@@ -1,7 +1,7 @@
 //const baseUrl = 'https://api.covalenthq.com/v1/97/events/address/0xF27b70Bd5f94d9f86E3724E7305103b24A17D74A/?starting-block=15122455&ending-block=15582410&key=ckey_831189c9b2654b698eebad038af'
 const baseUrl = 'https://api.covalenthq.com/'
 const eventsCall = 'v1/97/events/address/';
-const contAdr = '0xF27b70Bd5f94d9f86E3724E7305103b24A17D74A/';
+const contAdr = '0x783fd7e04D2f755436030693c7239FBA0aEdaF6A/';
 const key = 'ckey_831189c9b2654b698eebad038af'
 
 let startingBlock = 15122455;
@@ -51,6 +51,9 @@ function getRecentTransactions() {
                         transactions = data.data;
 
                         printTransactions();
+                        console.log(startingBlock);
+                        console.log(endingBlock);
+
                   }
             }
       }, 8000)
@@ -65,7 +68,10 @@ function printTransactions() {
             maxcnt = 0;
       }
       let end = transactions.items.length - maxcnt;
-      for (let index = transactions.items.length; index >= end ; index--) {
+      console.info(transactions);
+	
+	
+      for (let index = transactions.items.length; index >= end; index--) {
             var type1;
             try {
                   type1 = transactions.items[index].decoded;

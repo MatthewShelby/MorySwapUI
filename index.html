@@ -280,6 +280,32 @@
 					</div>
 				</div>
 			</div>
+			
+			<!-- //=============    TEST TOKEN   ============= -->
+				<div class="function-div row justify-content-between" id="test-Row">
+					<div class="function-text col-sm-12 col-4">
+						<h2>TEST token </h2>
+						<p> You can request for some "MRY" tokens here.</p>
+						<p> If your wallet is connected, you only need to click on the button.</p>
+
+
+
+
+
+
+					</div>
+					<div class=" function-action col-5 col-sm-12">
+						<label for="transfer-destination">Request for "MRY" test token:</label>
+
+						<button onclick="sendTest()" id="reqBTN" class="btn-transfer" style="width:auto"> 
+							&nbsp; &nbsp; &nbsp;Send me test  &nbsp; &nbsp; &nbsp;  </button>
+							<br>
+							<br>
+							<label for="transfer-destination">FYI: contract address:</label>
+							<p id="contract-address" style="word-break: break-all"> </p>
+					</div>
+				</div>
+				
 			<div class="con">
 				<div class="function-div ">
 					<div class="function-text">
@@ -322,6 +348,96 @@
 		trySingIn();
 		setBlocks();
 		getRecentTransactions();
+
+		var latestBlock = 0;
+		Date.prototype.timeNow = function () {
+			return ((this.getHours() < 10) ? "0" : "") + this.getHours() + ":" + ((this.getMinutes() < 10) ? "0" : "") + this.getMinutes() + ":" + ((this.getSeconds() < 10) ? "0" : "") + this.getSeconds();
+		}
+		var machine = 0;
+
+
+
+		var sad = [2101, 2103,2214,2122];
+		sad.push(2014);
+		sad.splice(1, 1);
+
+		auctionsIds = sad;
+
+		console.log('l: ' + auctionsIds.length + '  sad:  ' + auctionsIds)
+		removeAuctionFromList(2214)
+		console.log('l: ' + auctionsIds.length + '  sad:  ' + auctionsIds)
+
+		function removeAuctionFromList(tokenId) {
+			let len = auctionsIds.length;
+			if (len == 1) { auctionsIds = [] }
+			else {
+				newArr = [];
+				var x = 0;
+				for (let i = 0; i < len; i++) {
+					if (auctionsIds[i] == tokenId) { x = 1; }
+					else {
+						newArr[i - x] = auctionsIds[i];
+					}
+				}
+				auctionsIds = [];
+				auctionsIds = newArr;
+
+			}
+		}
+		// setInterval(() => {
+		// 	provider.getBlockNumber().then(function (blockNumber) {
+		// 		if (blockNumber != latestBlock) {
+
+		// 			//machine = Date.timeNow;
+		// 			latestBlock = blockNumber;
+		// 			console.log("CBN: " + blockNumber + '    date:' + machine);
+
+		// 		}
+
+		// 	});
+		// 	machine += 1;
+		// }, 1000)
+
+
+
+
+		/*
+		
+				const ERC20Token = new ethers.Contract(contractAddress, ABI, provider);
+				console.log('tER: ' + typeof (ERC20Token));
+				let sender1 = '0x5798737e2c9eb7f6c9dbd4c3b5ac8759e521f3ac';
+				let recipient1 = '0x24564f1ddc85fa32c6eebc9edbc1111b001b3c3c';
+				//const _startBlock = 15122455;
+				const startBlock = 15122455;
+				const endBlock = 15679233;
+				var tet = 0;
+				var tes = 10;
+		
+				// const filter = ERC20Token.filters.Transfer();
+				// const filter = myContract.
+				async function GT() {
+					var allEvents = [];
+					for (let i = startBlock; i < endBlock; i += 5000) {
+						const _startBlock = i;
+						const _endBlock = Math.min(endBlock, i + 4999);
+						const events = await ERC20Token.queryFilter('Transfer', _startBlock, _endBlock);
+						allEvents = [...allEvents, ...events]
+						tet++;
+						if (tet == tes) {
+							console.log('from GT(): ' + tet)
+							tes += 10;
+						}
+					}
+					//const events = await ERC20Token.queryFilter('Transfer', _startBlock, _endBlock);
+					return Promise.resolve(allEvents);
+				}
+		
+				GT().then(events => {
+					console.info(events);
+				})*/
+		//allEvents = [...allEvents, ...events];
+
+
 		//const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
 		//getBalance("0x87B64804e36f20acA9052D3b4Cd7188D41b59f97");
